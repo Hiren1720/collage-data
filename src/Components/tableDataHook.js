@@ -11,7 +11,7 @@ const TableDataHook = () => {
     const [admissonYear, setAdmissonYear] = useState()
     const [inpMerit, setInpMerit] = useState()
     const [selecterMerit, setSelecterMerit] = useState()
-    const [sortMerit, setSortMerit] = useState()
+    const [sortMerit, setSortMerit] = useState('')
     const [meritCategory, setMeritCategory] = useState()
     const [downloadFormat, setDownloadFormat] = useState()
     let tablefilterData = data
@@ -224,9 +224,8 @@ const TableDataHook = () => {
     const sortingMerit = (e) => {
         setSortMerit(e.target.value);
 
-        let arr = []
-        console.log("table", tableData)
-        tablefilterData?.department_data.map((item) => (
+        let arr = [];
+        tableData?.department_data.map((item) => (
             item?.year.map((itm) => (
                 itm?.student_data.map((i) => (
                     arr.push({ ...i, year: itm.year, year_head: itm.year_head, department: item.department, dep_head: item.dep_head })
@@ -234,18 +233,17 @@ const TableDataHook = () => {
             ))
         ))
         const flatData = arr.flat()
-        console.log("flat", flatData)
         const sortdata = flatData.sort((a, b) => {
-            if (sortMerit === 'Descending') {
+            if (e.target.value === 'Ascending') {
                 return (a.merit_12th || a.merit_diploma) - (b.merit_12th || b.merit_diploma);
             } else {
                 return (b.merit_12th || b.merit_diploma) - (a.merit_12th || a.merit_diploma);
             }
         });
 
-        let setttmerit = { collage_name: data.collage_name, department_data: [{ year: [{ student_data: sortdata }] }] }
-        console.log("sorttttt", sortdata)
-        setTableData(setttmerit)
+        let setttmerit = { collage_name: data.collage_name, department_data: [{ year: [{ student_data: sortdata }] }] };
+        console.log('setttmerit',setttmerit)
+        setTableData({...setttmerit})
     };
 
     const downloadFile = () => {
