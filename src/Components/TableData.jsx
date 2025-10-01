@@ -1,5 +1,6 @@
 import React from 'react'
 import TableDataHook from './tableDataHook';
+import AdBanner from './AdSenseBanner';
 
 const TableData = () => {
     const { tableData, gender, setGender, department, setDepartment, currentYear, setCurrentYear, admissonYear, setAdmissonYear, inpMerit, setInpMerit, selecterMerit, setSelecterMerit, sortMerit, meritCategory, setMeritCategory, downloadFormat, setDownloadFormat, resetAll, selectFilter, fillIdAndEmail, matchContact,
@@ -8,6 +9,7 @@ const TableData = () => {
     const FilterHeaders = () => {
         return (
             <div className='mt-4'>
+                <AdBanner />
                 <div className=' flex items-end justify-center flex-wrap'>
                     <select onChange={(e) => setGender(e.target.value)} value={gender} className="me-5 w-40 h-11 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected value="">--Gender--</option>
@@ -69,6 +71,7 @@ const TableData = () => {
                     </select>
 
                 </div>
+                <AdBanner />
                 <div className='py-5 flex justify-center flex-wrap'>
                     <button onClick={selectFilter} className='mt-5 me-5 bg-cyan-800 text-[15px] border-0 font-bold rounded-md text-white px-6 py-3'>Filter</button>
                     <button className='mt-5 me-5 bg-sky-500 text-[15px] border-0 font-bold rounded-md text-white px-6 py-3' onClick={() => fillIdAndEmail()}>Fill Id & Email</button>
